@@ -1,0 +1,2 @@
+Establece las reglas para mantener y actualizar la documentación del repositorio. 
+Define las convenciones de nombres, el formato de archivos Markdown y el flujo de trabajo para incorporar cambios técnicos.

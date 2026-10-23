@@ -1,0 +1,2 @@
+Registra la identidad oficial del producto junto con las alternativas consideradas durante el proceso de ideación. 
+Incluye la justificación del nombre final seleccionado y los lineamientos básicos para su denominación comercial.

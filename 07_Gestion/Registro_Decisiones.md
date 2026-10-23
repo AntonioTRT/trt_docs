@@ -1,0 +1,2 @@
+Almacena la bitácora de decisiones de arquitectura e ingeniería. 
+Explica el contexto de cada problema técnico enfrentado, las alternativas analizadas y la razón técnica por la que se eligió una solución específica.

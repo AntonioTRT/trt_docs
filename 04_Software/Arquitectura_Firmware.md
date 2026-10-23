@@ -1,0 +1,2 @@
+Describe el funcionamiento del código interno del microcontrolador.
+Explica el bucle principal de ejecución, la lectura periódica de periféricos de entrada y la conversión de eventos en mensajes estandarizados.

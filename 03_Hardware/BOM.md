@@ -1,0 +1,2 @@
+Mantiene la lista estructurada de componentes necesarios para el ensamblaje de las placas. 
+Incluye números de parte del fabricante, encapsulados, valores nominales, cantidades exactas y enlaces de adquisición.
