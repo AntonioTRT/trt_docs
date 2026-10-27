@@ -1,2 +1,0 @@
-Explica la lógica mediante la cual la placa base identifica automáticamente qué módulo se ha conectado. 
-Describe el método de reconocimiento de hardware mediante direccionamiento o arreglos de resistencias de identificación.

@@ -1,2 +1,0 @@
-Especifica las condiciones técnicas necesarias para garantizar el correcto funcionamiento del ecosistema. 
-Detalla consumos de energía, voltajes de operación, compatibilidad con sistemas operativos y ancho de banda requerido en el bus USB.

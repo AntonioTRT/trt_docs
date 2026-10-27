@@ -1,2 +1,0 @@
-Establece la guía de estilo gráfico del producto. 
-Define la paleta de colores corporativos con sus códigos correspondientes, la tipografía oficial para documentación y los elementos visuales de interfaz.

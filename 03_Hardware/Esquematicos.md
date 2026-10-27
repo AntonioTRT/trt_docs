@@ -1,2 +1,0 @@
-Reúne y referencia los diagramas eléctricos detallados de cada placa. 
-Muestra las interconexiones de pines, distribución de componentes pasivos, reguladores de voltaje y conexiones magnéticas externas.

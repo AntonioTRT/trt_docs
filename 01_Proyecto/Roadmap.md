@@ -1,2 +1,0 @@
-Presenta la planificación cronológica del desarrollo dividida en fases consecutivas. 
-Muestra la evolución esperada desde el diseño inicial de hardware y firmware hasta la integración de prototipos y las pruebas finales de funcionamiento.

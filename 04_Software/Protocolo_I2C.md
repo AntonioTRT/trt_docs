@@ -1,2 +1,0 @@
-Detalla las reglas de comunicación del bus interno I2C entre módulos. 
-Especifica el mapa de direcciones asignadas, las velocidades de transmisión, el formato de la trama de datos y la gestión de colisiones o errores.
