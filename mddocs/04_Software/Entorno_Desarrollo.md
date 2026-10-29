@@ -9,6 +9,7 @@ cd TRT-cli
 pip install -e .
 trt discover
 trt board info 101
+trt listen
 pytest
 ```
 
@@ -32,4 +33,6 @@ Se compila y depura con **STM32CubeIDE**; TRT-core se integrará como librería,
 
 ## Verificación rápida de todo el flujo
 
-Cargar un sketch en un Arduino → `trt discover` → `trt board info <BOARD_ID>`.
+Cargar un sketch en un Arduino → `trt listen` (debe verse `Board <BOARD_ID>: HEARTBEAT` cada segundo) → `trt discover` → `trt board info <BOARD_ID>`.
+
+`trt listen` valida firmware, carga, transporte y runtime; `trt discover` valida la identidad. Ver `Arquitectura_CLI.md`.

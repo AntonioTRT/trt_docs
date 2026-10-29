@@ -22,7 +22,7 @@
 
 **Comando (PC → placa):** el usuario escribe `trt board info 101` → el CLI crea una petición y la codifica en una trama → la envía por el transporte → el firmware la parsea, la despacha al servicio correspondiente → responde con `ACK`, `DATA` o `NACK` + error → el CLI decodifica y muestra el resultado.
 
-**Evento (placa → PC):** un servicio del firmware (encoder, botón…) genera un evento → se encola y se envía al host sin que este lo pida. *Previsto; en V0.1 solo hay comandos.*
+**Evento (placa → PC):** un servicio del firmware (encoder, botón…) genera un evento → se encola y se envía al host sin que este lo pida. *Hoy el único evento implementado es el **heartbeat** (una trama por segundo que confirma que la placa está viva; no sustituye al descubrimiento). Los eventos de encoder, botón, etc. siguen previstos. Ver `Protocolo_TRT.md`.*
 
 ## Principios que atraviesan todo el sistema
 

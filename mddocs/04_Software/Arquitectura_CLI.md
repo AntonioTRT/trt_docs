@@ -30,8 +30,23 @@ Dirección de dependencias: de arriba hacia abajo; las capas inferiores no conoc
 | `trt discover` | Enumera puertos serie y sondea cuáles tienen una placa TRT |
 | `trt boards` | Lista placas conocidas |
 | `trt board info <id>` / `capabilities <id>` | Identidad y capacidades de una placa (reales) |
+| `trt listen` | Escucha pasivamente a todas las placas y muestra sus mensajes (`Board 101: HEARTBEAT`) |
+| `trt board listen <id>` | Lo mismo, solo para una placa |
 | `trt lcd`, `trt led` | Grupos de comandos de LCD y LED (usan cliente simulado por ahora) |
 | `trt protocol`, `trt help`, `trt version`, `trt update` | Utilidades |
+
+## Escucha pasiva y heartbeat
+
+`trt listen` no envía nada: abre los puertos serie y muestra los eventos que las placas emiten solas. Cada placa TRT-core envía un `HEARTBEAT` aproximadamente cada segundo, así que tras cargar el firmware basta con ejecutar `trt listen` y ver `Board 101: HEARTBEAT` repetido para confirmar que el firmware, el transporte y el runtime funcionan. No sustituye a `trt discover` ni a `trt board info <id>`.
+
+```text
+commands/listen.py → services/listen_service.py (ListenService) → transport/frame_reader.py (FrameReader) → puerto serie
+```
+
+- `ListenService` lee cada puerto en su propio hilo y filtra por placa; `FrameReader` es un lector de tramas que se resincroniza tras ruido.
+- No pasa por `ProtocolClient`. Las peticiones normales de `SerialTransport` descartan las tramas de evento mientras esperan la respuesta, para que un heartbeat no corrompa un descubrimiento.
+- Otros eventos se muestran como `EVENT 0x<id> payload=<hex>`.
+- Solo un programa puede usar un puerto serie a la vez: cierre otros monitores antes. El simulador no emite heartbeat.
 
 ## Cómo añadir un comando
 

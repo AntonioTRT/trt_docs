@@ -47,6 +47,15 @@ bytes → Parser → cola RX → cola de comandos → Dispatcher → máquina de
 
 El bucle principal es **cooperativo y no bloqueante**: actualiza servicios, procesa eventos y comandos, actualiza el estado y transmite pendientes, con un máximo de elementos por iteración. Nunca espera mensajes del host.
 
+## Heartbeat
+
+Toda implementación debe emitir el evento HEARTBEAT (`FLAGS 0x02`, `COMMAND 0x9001`, sin payload, ~1 por segundo). Es el primer evento implementado y no sustituye al descubrimiento. Ver `Protocolo_TRT.md`.
+
+- **Generación:** `HeartbeatService` en `core/services/`, compartido por todas las plataformas y sin código específico de placa.
+- **Integración:** el runtime de cada placa le da un reloj en milisegundos y llama a `poll()` en su bucle (Arduino y ESP32: `millis()`; STM32: contador SysTick, que debe consultarse más de una vez por segundo).
+- **Transporte:** solo escribe por `ITransport`, sin saber si es serie, USB, CAN o TCP. Funciona en la variante de memoria estática y en la completa.
+- **Estado:** Arduino, ESP32 y STM32 sí; simulador no; RP2040 aún sin runtime. Todo nuevo puerto debe incluirlo (ver `porting-guide.md`).
+
 ## Conceptos clave
 
 - **Capacidades**: la placa declara lo que soporta; lo demás recibe `ERROR_UNSUPPORTED_COMMAND`.
@@ -56,7 +65,7 @@ El bucle principal es **cooperativo y no bloqueante**: actualiza servicios, proc
 
 ## Implementado hoy vs. diseñado
 
-Implementado: parser/encoder, dispatcher, capacidades, `SystemService` con los comandos V0.1, simulador y pruebas, runtime Arduino. Diseñado pero sin implementar: máquina de estados, servicios de encoder/botón/LED, cola de eventos, configuración persistente, validación CRC16, variante AVR.
+Implementado: parser/encoder, dispatcher, capacidades, `SystemService` con los comandos V0.1, simulador y pruebas, runtime Arduino y ESP32 (descubrimiento), heartbeat. Diseñado pero sin implementar: máquina de estados, servicios de encoder/botón/LED, cola de eventos, configuración persistente, validación CRC16, variante AVR.
 
 ## Cómo añadir una placa
 

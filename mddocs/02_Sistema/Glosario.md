@@ -20,7 +20,8 @@
 | **Transporte** | Canal que mueve bytes (serie/USB CDC; futuro CAN, TCP). Interfaz `ITransport`. |
 | **Capacidad** (*capability*) | Función que una placa declara soportar (GPIO, PWM, LCD…). |
 | **Servicio** | Tarea periódica del firmware (encoder, botón, LED ring, comunicación…). |
-| **Evento** | Mensaje placa → host sobre algo ocurrido (ej. giro de encoder). |
+| **Evento** | Mensaje placa → host sobre algo ocurrido (ej. giro de encoder). Va en una trama con `FLAGS = 0x02`. |
+| **Heartbeat** | Evento (`0x9001`) que cada placa emite ~1 vez por segundo para indicar que está viva. No sustituye al descubrimiento. |
 | **Comando** | Petición host → placa. |
 | **BoardContext** | Objeto del firmware que reúne info de placa, capacidades, módulos, transporte e interfaces. |
 | **HWID** | Código de 4 bits en el conector B2B con el que la placa base identifica qué placa hija está conectada. |

@@ -5,7 +5,8 @@
 ## Incluido en la versión actual
 
 - **Protocolo TRT V0.1**: formato de trama fijo y seis comandos obligatorios de descubrimiento y observación: `PING`, `FW_VERSION`, `BOARD_VERSION`, `INFO`, `STATUS`, `CAPABILITIES`. Se añade `BUILD_ID` como extensión de descubrimiento.
-- **TRT-cli**: descubrimiento de placas por puerto serie, `board info`, `board capabilities`, ayuda, versión y actualización.
+- **TRT-cli**: descubrimiento de placas por puerto serie, `board info`, `board capabilities`, escucha pasiva (`trt listen`, `trt board listen <id>`), ayuda, versión y actualización.
+- **Heartbeat**: evento periódico (~1/s) de presencia emitido por las placas TRT-core.
 - **TRT-core**: runtime portable (parser, despachador, capacidades, módulos, servicio de sistema) y un simulador sin hardware.
 - **Placas objetivo**: simulador (validación), Arduino (primera integración real, validada), después STM32 y ESP32.
 - **TRT_HW**: placa base STM32G474 con conector board-to-board, bus I2C/SPI, identificación de hardware de 4 bits y driver PWM.

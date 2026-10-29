@@ -29,6 +29,26 @@ SYNC | VERSION | FLAGS | BOARD_ID | SEQ_ID | COMMAND | LENGTH | PAYLOAD | CRC16
 
 Una placa es "compatible TRT V0.1" si implementa los comandos 0x0001–0x0006.
 
+## Heartbeat (evento)
+
+Toda implementación de TRT-core emite periódicamente un **heartbeat**: una trama de evento no solicitada por el host.
+
+| Campo | Valor |
+|---|---|
+| `FLAGS` | `0x02` (EVENT) |
+| `COMMAND` | `0x9001` (HEARTBEAT) |
+| `BOARD_ID` | La placa que lo emite |
+| `SEQ_ID` | Contador propio de la placa (no responde a ninguna petición) |
+| Payload | Vacío (trama de 14 bytes) |
+
+- **Frecuencia:** una vez por segundo (~14 bytes/s); la primera, nada más arrancar. Es constante en tiempo de compilación.
+- **Para qué sirve:** confirma que el firmware corre, que la carga (flash) fue correcta, que el transporte funciona y que el runtime TRT está vivo. Pensado para desarrollo y validación; es seguro dejarlo activo.
+- **No sustituye al descubrimiento:** el heartbeat solo indica presencia. La identidad sigue siendo cosa de `FW_VERSION`, `BOARD_VERSION` (GET_ID), `CAPABILITIES` y `BUILD_ID`.
+- **Independiente del transporte:** la misma trama sirve por serie, USB, CAN o TCP.
+- **En el PC:** se ve con `trt listen` o `trt board listen <id>`. Las peticiones normales ignoran las tramas de evento mientras esperan su respuesta.
+
+Los eventos usan su propio rango de IDs (`0x9000` en adelante), separado de comandos (`0x0001`–`0x0007`) y respuestas (`0x8001`–`0x8003`).
+
 ## Respuestas y errores
 
 | Respuesta | ID | Significado |
