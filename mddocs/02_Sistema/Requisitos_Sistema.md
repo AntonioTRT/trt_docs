@@ -1,37 +1,39 @@
-# Requisitos del sistema
+# Requisitos del sistema TRT
 
-> Estado: Parcial (derivado de los repositorios; no hay documento formal de requisitos).
+## Conectividad
 
-## Host (TRT-cli)
+- El sistema deberá permitir la conexión de las placas mediante USB.
+- El sistema deberá permitir la comunicación entre la computadora y las placas.
+- El sistema deberá detectar automáticamente las placas conectadas.
 
-- Python 3.13+. Dependencias: Typer, Rich, pyserial. Pruebas: pytest.
-- Windows, Linux o macOS.
-- Puerto serie/USB disponible hacia la placa.
+## Compatibilidad
 
-## Firmware (TRT-core)
+- El sistema deberá ser compatible con placas Arduino.
+- El sistema deberá contemplar compatibilidad con STM32 y ESP32.
+- El sistema deberá permitir realizar pruebas mediante un simulador.
 
-- Placas con runtime completo (STL y memoria dinámica): simulador, ESP32, STM32.
-- Placas con poca RAM (AVR/Uno, 2 KB): no soportadas aún por el runtime general; requieren un subconjunto de memoria estática.
-- Toolchain: PlatformIO (Arduino), STM32CubeIDE (STM32), CMake (simulador y pruebas).
-- Cargar firmware Arduino: Python 3.10+, `platformio`, `truststore`.
+## Identificación
 
-## Hardware (TRT_HW)
+- El sistema deberá identificar cada placa conectada.
+- El sistema deberá mostrar la versión del firmware.
+- El sistema deberá proporcionar información sobre el estado de la placa.
+- El sistema deberá informar las capacidades disponibles de cada placa.
 
-- Alimentación: USB-C 5 V, regulador a 3,3 V.
-- MCU: STM32G474RET6 (Cortex-M4F, 170 MHz).
-- Interconexión con placas hijas: I2C, SPI, GPIO/ADC/DAC y 4 bits de HWID.
+## Comunicación
 
-## Requisitos funcionales de protocolo (V0.1)
+- El sistema deberá permitir enviar y recibir información entre la computadora y las placas.
+- El sistema deberá reconocer los comandos de comunicación establecidos.
+- El sistema deberá informar cuando se reciba un comando no compatible.
+- Las placas deberán continuar funcionando aunque se desconecte la computadora.
 
-1. Implementar los 6 comandos obligatorios.
-2. Responder `ERROR_UNSUPPORTED_COMMAND` a lo no soportado.
-3. No bloquear el bucle principal.
-4. Seguir operando sin host.
+## Software
 
-Consumos, ancho de banda USB y compatibilidad de SO más allá de lo anterior: **pendiente de definir**.
+- El sistema deberá permitir consultar información de las placas mediante una interfaz de comandos.
+- El sistema deberá proporcionar información de ayuda y su versión.
+- El sistema deberá permitir consultar las placas disponibles.
 
-## Información pendiente
+## Hardware
 
-> TODO: Por hacer. Información no encontrada o no suficientemente documentada.
-
-Falta: consumos de energía, ancho de banda USB y compatibilidad de sistemas operativos.
+- El dispositivo deberá contar con alimentación eléctrica mediante USB-C.
+- El sistema deberá permitir la conexión de placas adicionales.
+- El dispositivo deberá permitir identificar el tipo de hardware conectado.
