@@ -1,22 +1,31 @@
-# Alcance
+# Alcance del proyecto TRT
 
-> Estado: Vigente (protocolo V0.1 y CLI 1.0.0).
+## Conectividad
 
-## Incluido en la versión actual
+- El dispositivo podrá conectarse a una computadora mediante USB.
+- Permitirá la comunicación entre la computadora y las placas electrónicas.
+- Utilizará comunicación serial para enviar y recibir información.
 
-- **Protocolo TRT V0.1**: formato de trama fijo y seis comandos obligatorios de descubrimiento y observación: `PING`, `FW_VERSION`, `BOARD_VERSION`, `INFO`, `STATUS`, `CAPABILITIES`. Se añade `BUILD_ID` como extensión de descubrimiento.
-- **TRT-cli**: descubrimiento de placas por puerto serie, `board info`, `board capabilities`, escucha pasiva (`trt listen`, `trt board listen <id>`), ayuda, versión y actualización.
-- **Heartbeat**: evento periódico (~1/s) de presencia emitido por las placas TRT-core.
-- **TRT-core**: runtime portable (parser, despachador, capacidades, módulos, servicio de sistema) y un simulador sin hardware.
-- **Placas objetivo**: simulador (validación), Arduino (primera integración real, validada), después STM32 y ESP32.
-- **TRT_HW**: placa base STM32G474 con conector board-to-board, bus I2C/SPI, identificación de hardware de 4 bits y driver PWM.
+## Compatibilidad
 
-## Estado por módulo
+- El sistema tendrá soporte para diferentes microcontroladores.
+- Se contempla compatibilidad con Arduino, STM32 y ESP32.
+- Contará con un simulador para realizar pruebas sin necesidad de hardware físico.
 
-| Módulo | Estado |
-|---|---|
-| TRT-cli | Funcional con hardware real (descubrimiento e info). Los comandos de LCD/LED existen pero no controlan hardware real aún. |
-| TRT-core | V0.1 implementado; Arduino integrado; STM32 en preparación; ESP32/RP2040 solo estructura. |
-| TRT_HW | Esquemáticos y huellas completos; ruteo de pistas pendiente. |
+## Identificación
 
-Lo que no se hace en esta etapa está en [Fuera de alcance](Fuera_De_Alcance.md).
+- El sistema permitirá detectar las placas conectadas.
+- Podrá consultar la versión del firmware.
+- Permitirá obtener información sobre el estado y las capacidades del dispositivo.
+
+## Software
+
+- Contará con una herramienta de línea de comandos (TRT-cli).
+- Permitirá consultar información de las placas desde una computadora.
+- Tendrá un firmware común (TRT-core) para gestionar la comunicación.
+
+## Limitaciones
+
+- La primera versión utilizará comunicación USB/serial.
+- No incluirá control remoto de todos los periféricos.
+- Algunas funciones estarán disponibles en futuras versiones.
